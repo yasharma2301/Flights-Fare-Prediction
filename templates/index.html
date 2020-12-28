@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="static/css/main.css">
+    <title>Fligths Fare | Project</title>
+</head>
+
+<body>
+    <!-- NavBar -->
+    <div class="navbar">
+        <div class="container flex">
+            <h1 class="logo">Fligths Fare</h1>
+            <nav>
+                <ul>
+
+                    <li><a href="mailto:ys909@snu.edu.in">Email</a></li>
+                    <li><a href="https://github.com/yasharma2301" target="_blank">Github</a></li>
+                    <li><a href="https://www.linkedin.com/in/yash-sharma-4797a0168/" target="_blank">Linkedin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- ShowCase -->
+    <section class="showcase">
+        <div class="container grid">
+            <div class="showcase-text">
+                <h1 class="text-bold">Overview</h1>
+                <p>The project is based on a spervised machine learning algorithm called Random Forest. <br> Random forests are an ensemble learning method for classification and regression. They create a number of decision trees under the hood at the time
+                    of training the model and outputs on the basis of averaging techniques in case of regression, which is used here.</p>
+                <a href="https://github.com/yasharma2301/Flights-Fare-Prediction" target="_blank" class="btn btn-outline">View On Github</a>
+            </div>
+            <i class="fas fa-plane fa-9x rotate" aria-hidden="true"></i>
+        </div>
+    </section>
+
+    <!-- Demo -->
+    <section class="container demo">
+        <div class="demo-form card">
+            <div class="grid">
+                <form action="\predictFare" method="post">
+                    <h2 class="text-bold form-heading">Try the algorithm!</h2>
+                    <h3 class="placeholder-title">Departure Date:</h3>
+                    <input type="date" name="departure_date" id="departure_date" required="required">
+
+                    <h3 class="placeholder-title">Departure Time:</h3>
+                    <input type="time" name="departure_time" id="departure_time" value="12:30" required="required">
+
+                    <h3 class="placeholder-title">Arrival Time:</h3>
+                    <input type="time" name="arrival_time" id="arrival_time" value="18:30" required="required">
+                    <div class="form-control">
+                        <select name="Source" id="Source" required="required">
+                                <option value="none" selected disabled hidden>Souce City</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Kolkata">Kolkata</option>
+                                <option value="Mumbai">Mumbai</option>
+                                <option value="Chennai">Chennai</option>
+                            </select>
+                    </div>
+                    <div class="form-control">
+                        <select name="Destination" id="Destination" required="required">
+                                <option value="none" selected disabled hidden>Destination City</option>
+                                <option value="Cochin">Cochin</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Hyderabad">Hyderabad</option>
+                                <option value="Kolkata">Kolkata</option>
+                            </select>
+                    </div>
+                    <div class="form-control">
+                        <select name="stops" required="required">
+                                <option value="none" selected disabled hidden>Choose Number Of Stops</option>
+                                <option value="0">Non-Stop</option>
+                                <option value="1">1 Stop</option>
+                                <option value="2">2 Stop</option>
+                                <option value="3">3 Stop</option>
+                                <option value="4">4 Stop</option>
+                            </select>
+                    </div>
+                    <div class="form-control">
+                        <select name="airline" id="airline" required="required">
+                                <option value="none" selected disabled hidden>Choose an Airline</option>
+                                <option value="Jet Airways">Jet Airways</option>
+                                <option value="IndiGo">IndiGo</option>
+                                <option value="Air India">Air India</option>
+                                <option value="Multiple carriers">Multiple carriers</option>
+                                <option value="SpiceJet">SpiceJet</option>
+                                <option value="Vistara">Vistara</option>
+                                <option value="Air Asia">Air Asia</option>
+                                <option value="GoAir">GoAir</option>
+                                <option value="Multiple carriers Premium economy">Multiple carriers Premium economy
+                                </option>
+                                <option value="Jet Airways Business">Jet Airways Business</option>
+                                <option value="Vistara Premium economy">Vistara Premium economy</option>
+                                <option value="Trujet">Trujet</option>
+                            </select>
+                    </div>
+                    <input type="submit" value="Predict" class="btn btn-primary">
+                    <h2 class="prediction-text">{{ fare }}</h2>
+                </form>
+                <div>
+                    <img class="decision-tree" src="static/images/decision_tree_animation.gif" alt="" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark py-5">
+        <div class="container">
+            <div>
+                <h1>Flights Fare
+                </h1>
+                <p>Copyright &copy; 2020 Yash Sharma</p>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>
