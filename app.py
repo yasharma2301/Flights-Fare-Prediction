@@ -155,9 +155,9 @@ def predict():
             d_Kolkata,
             d_New_Delhi
         ]])
-
+        # render_template('index.html',fare="Predicted flight price: ₹ {}".format(flight_fare))
         flight_fare =  str(round(prediction[0],2))
-        return render_template('index.html',fare="Predicted flight price: ₹ {}".format(flight_fare))
+        return "Predicted flight price: ₹ {}".format(flight_fare)
 
 if __name__ == "__main__":
     app.debug = True

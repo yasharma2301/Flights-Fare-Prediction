@@ -42,7 +42,7 @@
     <section class="container demo">
         <div class="demo-form card">
             <div class="grid">
-                <form action="\predictFare" method="post">
+                <form class="form" id="myForm">
                     <h2 class="text-bold form-heading">Try the algorithm!</h2>
                     <h3 class="placeholder-title">Departure Date:</h3>
                     <input type="date" name="departure_date" id="departure_date" required="required">
@@ -53,7 +53,7 @@
                     <h3 class="placeholder-title">Arrival Time:</h3>
                     <input type="time" name="arrival_time" id="arrival_time" value="18:30" required="required">
                     <div class="form-control">
-                        <select name="Source" id="Source" required="required">
+                        <select name="Source" id="Source" required="required" onchange="selectOption()">
                                 <option value="none" selected disabled hidden>Souce City</option>
                                 <option value="Delhi">Delhi</option>
                                 <option value="Kolkata">Kolkata</option>
@@ -64,10 +64,10 @@
                     <div class="form-control">
                         <select name="Destination" id="Destination" required="required">
                                 <option value="none" selected disabled hidden>Destination City</option>
-                                <option value="Cochin">Cochin</option>
                                 <option value="Delhi">Delhi</option>
-                                <option value="Hyderabad">Hyderabad</option>
                                 <option value="Kolkata">Kolkata</option>
+                                <option value="Cochin">Cochin</option>
+                                <option value="Hyderabad">Hyderabad</option>
                             </select>
                     </div>
                     <div class="form-control">
@@ -99,7 +99,7 @@
                             </select>
                     </div>
                     <input type="submit" value="Predict" class="btn btn-primary">
-                    <h2 class="prediction-text">{{ fare }}</h2>
+                    <h2 id="prediction-text-id" class="prediction-text">{{ fare }}</h2>
                 </form>
                 <div>
                     <img class="decision-tree" src="static/images/decision_tree_animation.gif" alt="" />
@@ -119,7 +119,38 @@
         </div>
     </footer>
 
+    <script>
+        function selectOption() {
+            var s = document.getElementsByName('Source')[0];
+            var sourceSelected = s.options[s.selectedIndex].text;
 
+            var d = document.getElementsByName('Destination')[0];
+            for (i = 0; i < d.length; i++) {
+                d.options[i].disabled = false;
+                if (sourceSelected == d.options[i].value) {
+                    d.options[i].disabled = true;
+                    break;
+                }
+            }
+        }
+
+        const myForm = document.getElementById('myForm');
+        myForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            fetch('/predictFare', {
+                method: 'post',
+                body: formData
+            }).then(function(response) {
+                return response.text();
+            }).then(function(text) {
+                document.getElementById('prediction-text-id').innerHTML = text;
+                console.log(text);
+            }).catch(function(err) {
+                console.error(err);
+            });
+        });
+    </script>
 </body>
 
 </html>
